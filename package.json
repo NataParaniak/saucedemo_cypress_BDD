@@ -4,6 +4,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@types/node": "^26.4.1",
     "cypress": "^16.0.0",
+    "cypress-mochawesome-reporter": "^5.0.0",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2"
   }

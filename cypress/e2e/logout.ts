@@ -1,23 +1,26 @@
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { Given,When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-Given('I am logged in as {string}', (username: string) => {
-  cy.visit('/');
+import LoginPage from "../../Pages/LoginPage";
+import InventoryPage from "../../Pages/InventoryPage";
 
-  cy.get('[data-test="username"]').type(username);
-  cy.get('[data-test="password"]').type('secret_sauce');
-  cy.get('#login-button').click();
+import { validUser } from "../../test-data/credentials";
 
-  cy.url().should('include', '/inventory');
+Given("I am on the SauceDemo login page", () => {
+  LoginPage.visit();
 });
 
-When('I open the menu', () => {
-  cy.get('#react-burger-menu-btn').click();
+When("I login with valid credentials", () => {
+  LoginPage.login(validUser.username, validUser.password);
 });
 
-When('I click the Logout button', () => {
-  cy.get('#logout_sidebar_link').click();
+When("I open the menu", () => {
+  InventoryPage.openMenu();
 });
 
-Then('I should be redirected to the login page', () => {
-  cy.url().should('eq', 'https://www.saucedemo.com/');
+When("I click the Logout button", () => {
+  InventoryPage.logout();
+});
+
+Then("I should be redirected to the login page", () => {
+  LoginPage.verifyLoginPageIsDisplayed();
 });

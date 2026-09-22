@@ -1,31 +1,33 @@
-import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import LoginPage from "../../Pages/LoginPage";
+import InventoryPage from "../../Pages/InventoryPage";
+import { validUser, lockedUser } from "../../test-data/credentials";
 
-Given('I am on the SauceDemo login page', () => {
-  cy.visit('/');
+Given("I am on the SauceDemo login page", () => {
+  LoginPage.visit();
 });
 
-When('I enter {string} as username', (username: string) => {
-  cy.get('[data-test="username"]').type(username);
+When("I login with valid credentials", () => {
+  LoginPage.login(validUser.username, validUser.password);
 });
 
-When('I enter {string} as password', (password: string) => {
-  cy.get('[data-test="password"]').type(password);
+When("I login with locked credentials", () => {
+  LoginPage.login(lockedUser.username, lockedUser.password);
 });
 
-When('I click the Login button', () => {
-  cy.get('#login-button').click();
+When("I click the Login button", () => {
+  LoginPage.clickLoginButton();
 });
 
-Then('I should be redirected to the inventory page', () => {
-  cy.url().should('include', '/inventory');
+Then("I should be redirected to the inventory page", () => {
+  InventoryPage.verifyUrl();
 });
 
-Then('the inventory page should be displayed', () => {
-  cy.get('.title').should('have.text', 'Products');
+Then("the inventory page should be displayed", () => {
+  InventoryPage.verifyPageIsDisplayed();
 });
 
-Then('I should see the error message {string}', (message: string) => {
-  cy.get('[data-test="error"]')
-    .should('be.visible')
-    .and('contain', message);
+
+Then("I should see the error message {string}", (message: string) => {
+  LoginPage.verifyErrorMessage(message);
 });
