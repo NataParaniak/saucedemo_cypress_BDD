@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import LoginPage from "../../Pages/LoginPage";
-import InventoryPage from "../../Pages/InventoryPage";
-import { validUser, lockedUser } from "../../test-data/credentials";
+import LoginPage from "../../../Pages/LoginPage";
+import InventoryPage from "../../../Pages/InventoryPage";
+import { validUser, lockedUser } from "../../../test-data/credentials";
 
 Given("I am on the SauceDemo login page", () => {
   LoginPage.visit();
