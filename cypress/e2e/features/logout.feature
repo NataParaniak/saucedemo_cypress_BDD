@@ -1,5 +1,5 @@
 Feature: Logout
-
+@smoke
   Scenario: Successful logout
   Given I am on the SauceDemo login page
     When I login with valid credentials
