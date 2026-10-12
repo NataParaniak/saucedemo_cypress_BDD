@@ -2,9 +2,9 @@ name: Cypress UI Tests
 
 on:
   push:
-    branches: [master, main, API-PR]
+    branches: [master, main, BDD_tagb]
   pull_request:
-    branches: [master, main, API-PR]
+    branches: [master, main, BDD_tagb]
   workflow_dispatch:
 
 jobs:
